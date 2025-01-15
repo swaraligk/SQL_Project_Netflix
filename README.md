@@ -1,6 +1,6 @@
 # SQL Project: Netflix Data Analysis with Visualization Tool - PowerBi
 
-![Netflix Logo]()
+![Netflix Logo](netflix_logo.png)
 ## Overview
       Welcome to the Netflix Data Analysis project! 
       This project involves analyzing and optimizing a Netflix dataset using SQL and Power BI. 
