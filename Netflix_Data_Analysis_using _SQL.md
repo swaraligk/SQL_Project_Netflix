@@ -11,7 +11,7 @@ The data for this project is sourced from the Kaggle dataset:
 ```sql
 CREATE TABLE netflix
 (
-    show_id      		VARCHAR(5),
+    show_id      	VARCHAR(5),
     show_type         	VARCHAR(50),
     show_title        	VARCHAR(350),
     show_director     	VARCHAR(650),
@@ -32,7 +32,7 @@ SELECT
 	type,
 	COUNT(*)
 FROM netflix
-GROUP BY 1
+GROUP BY 1;
 
 ## 2. Find the most common rating for movies and TV shows
 
@@ -63,7 +63,7 @@ WHERE rank = 1;
 
 SELECT * 
 FROM netflix
-WHERE release_year = 2020
+WHERE release_year = 2020;
 
 
 ## 4. Find the top 5 countries with the most content on Netflix
@@ -80,7 +80,7 @@ FROM
 )as t1
 WHERE country IS NOT NULL
 ORDER BY total_content DESC
-LIMIT 5
+LIMIT 5;
 
 
 ## 5. Identify the longest movie
@@ -89,14 +89,14 @@ SELECT
 	*
 FROM netflix
 WHERE type = 'Movie'
-ORDER BY SPLIT_PART(duration, ' ', 1)::INT DESC
+ORDER BY SPLIT_PART(duration, ' ', 1)::INT DESC;
 
 
 ## 6. Find content added in the last 5 years
 SELECT
 *
 FROM netflix
-WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL '5 years'
+WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL '5 years';
 
 
 ## 7. Find all the movies/TV shows by director 'Rajiv Chilaka'!
@@ -112,7 +112,7 @@ FROM
 netflix
 )
 WHERE 
-	director_name = 'Rajiv Chilaka'
+	director_name = 'Rajiv Chilaka';
 
 
 
@@ -123,7 +123,7 @@ FROM netflix
 WHERE 
 	TYPE = 'TV Show'
 	AND
-	SPLIT_PART(duration, ' ', 1)::INT > 5
+	SPLIT_PART(duration, ' ', 1)::INT > 5;
 
 
 ## 9. Count the number of content items in each genre
@@ -132,11 +132,10 @@ SELECT
 	UNNEST(STRING_TO_ARRAY(listed_in, ',')) as genre,
 	COUNT(*) as total_content
 FROM netflix
-GROUP BY 1
+GROUP BY 1;
 
 
-## 10. Find each year and the average numbers of content release by India on netflix. 
--- return top 5 year with highest avg content release !
+## 10. Find each year and the average numbers of content release by India on netflix.  return top 5 year with highest avg content release !
 
 
 SELECT 
@@ -145,26 +144,27 @@ SELECT
 	COUNT(show_id) as total_release,
 	ROUND(
 		COUNT(show_id)::numeric/
-								(SELECT COUNT(show_id) FROM netflix WHERE country = 'India')::numeric * 100 
-		,2
-		)
+		(SELECT COUNT(show_id) FROM netflix WHERE country = 'India')::numeric * 100 
+		,2)
 		as avg_release
 FROM netflix
 WHERE country = 'India' 
 GROUP BY country, 2
 ORDER BY avg_release DESC 
-LIMIT 5
+LIMIT 5;
 
 
 ## 11. List all movies that are documentaries
+
 SELECT * FROM netflix
-WHERE listed_in LIKE '%Documentaries'
+WHERE listed_in LIKE '%Documentaries';
 
 
 
 ## 12. Find all content without a director
+
 SELECT * FROM netflix
-WHERE director IS NULL
+WHERE director IS NULL;
 
 
 ## 13. Find how many movies actor 'Salman Khan' appeared in last 10 years!
@@ -173,12 +173,10 @@ SELECT * FROM netflix
 WHERE 
 	casts LIKE '%Salman Khan%'
 	AND 
-	release_year > EXTRACT(YEAR FROM CURRENT_DATE) - 10
+	release_year > EXTRACT(YEAR FROM CURRENT_DATE) - 10;
 
 
 ## 14. Find the top 10 actors who have appeared in the highest number of movies produced in India.
-
-
 
 SELECT 
 	UNNEST(STRING_TO_ARRAY(casts, ',')) as actor,
@@ -187,15 +185,10 @@ FROM netflix
 WHERE country = 'India'
 GROUP BY 1
 ORDER BY 2 DESC
-LIMIT 10
+LIMIT 10;
 
 
-##Question 15:
-Categorize the content based on the presence of the keywords 'kill' and 'violence' in 
-the description field. Label content containing these keywords as 'Bad' and all other 
-content as 'Good'. Count how many items fall into each category.
-
-
+## Question 15:Categorize the content based on the presence of the keywords 'kill' and 'violence' in the description field. Label content containing these keywords as 'Bad' and all other content as 'Good'. Count how many items fall into each category.
 
 SELECT 
     category,
@@ -211,4 +204,6 @@ FROM (
     FROM netflix
 ) AS categorized_content
 GROUP BY 1,2
-ORDER BY 2
+ORDER BY 2;
+
+"This  highlights the ability of SQL to transform raw data into structured insights, laying a strong foundation for advanced analysis and data visualization."
