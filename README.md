@@ -1,4 +1,3 @@
-# SQL_Project_Netflix
 # SQL Project: Netflix Data Analysis with Visualization Tool - PowerBi
 
 ![Netflix Logo](https://www.google.com/imgres?q=netflix%20logo&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F0%2F08%2FNetflix_2015_logo.svg&imgrefurl=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3ANetflix_2015_logo.svg&docid=ug94bEA6vZI-yM&tbnid=b-FHQjfVEgwMeM&vet=12ahUKEwiPvqPyj_eKAxW-fvUHHX50ALoQM3oECFMQAA..i&w=1024&h=277&hcb=2&ved=2ahUKEwiPvqPyj_eKAxW-fvUHHX50ALoQM3oECFMQAA)
